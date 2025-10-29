@@ -1,3 +1,4 @@
+// Express server for Blackjack game backend - Updated for Render deployment
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
