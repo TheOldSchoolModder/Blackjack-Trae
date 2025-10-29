@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge.jsx';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator.jsx';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
-import { Coins, Users, Trophy, Zap, Play, UserPlus, HelpCircle, Volume2, VolumeX, Settings, Crown, Star, Gift, LogIn, Plus, Bot } from 'lucide-react';
+import { Coins, Users, Trophy, Zap, Play, UserPlus, HelpCircle, Volume2, VolumeX, Settings, Crown, Star, Gift, LogIn, LogOut, Plus, Bot } from 'lucide-react';
 import { AppContext } from '@/context/AppContext';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import { useSound } from '@/hooks/useSound';
