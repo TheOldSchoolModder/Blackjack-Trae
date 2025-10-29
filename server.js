@@ -1,4 +1,5 @@
 // Express server for Blackjack game backend - Updated for Render deployment
+// Service restart: 2025-10-29 11:27 UTC
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
