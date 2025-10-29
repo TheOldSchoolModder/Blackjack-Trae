@@ -1,0 +1,36 @@
+services:
+  # Backend Node.js server
+  - type: web
+    name: blackjack-server
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+    
+  # Frontend React app
+  - type: static
+    name: blackjack-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && VITE_API_URL=$VITE_API_URL VITE_SOCKET_URL=$VITE_SOCKET_URL npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: blackjack-server
+          property: host
+      - key: VITE_SOCKET_URL
+        fromService:
+          type: web
+          name: blackjack-server
+          property: host

@@ -172,4 +172,4 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   );
 };
 
-export default
+export default AuthModal;
