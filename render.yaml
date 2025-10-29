@@ -4,7 +4,7 @@ services:
     name: blackjack-server
     env: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm ci
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
@@ -21,7 +21,7 @@ services:
     name: blackjack-frontend
     env: static
     plan: free
-    buildCommand: npm install && VITE_API_URL=$VITE_API_URL VITE_SOCKET_URL=$VITE_SOCKET_URL npm run build
+    buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
