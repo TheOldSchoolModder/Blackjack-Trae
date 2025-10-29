@@ -1422,7 +1422,7 @@ export const useBlackjackGame = (gameMode, roomCode, player, initialBalance, pla
         }, 10000); // Increased from 8000ms to 10000ms to allow proper round summary display
 
         return () => clearTimeout(roundEndTimeoutRef.current);
-    }, [players, dealerHand, roundCounter, calculateScore, logEvent, updatePlayerBalance, resetForNewRound]);
+    }, [gameStatus, dealerHand, roundCounter, calculateScore, logEvent, updatePlayerBalance, resetForNewRound]);
 
     // Round end processing useEffect - CRITICAL: This must trigger when gameStatus becomes 'roundOver'
     useEffect(() => {
@@ -1782,7 +1782,7 @@ export const useBlackjackGame = (gameMode, roomCode, player, initialBalance, pla
         // Don't reset processingRoundEnd here - keep it true until timeout completes
 
         return () => clearTimeout(roundEndTimeoutRef.current);
-    }, [players, dealerHand, roundCounter, calculateScore, logEvent, updatePlayerBalance, resetForNewRound]);
+    }, [gameStatus, dealerHand, roundCounter, calculateScore, logEvent, updatePlayerBalance, resetForNewRound]);
 
     useEffect(() => {
       // Initialize results object for this useEffect

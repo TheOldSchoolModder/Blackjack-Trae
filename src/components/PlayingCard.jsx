@@ -10,7 +10,7 @@ const PlayingCard = React.forwardRef(({ card, hidden = false, cardIndex = 0, isD
 
   // CSS + WAAPI animation for card dealing with flip - only run once when card is first rendered
   useEffect(() => {
-    if (cardRef.current && !hasBeenDealt) {
+    if (cardRef.current && !hasBeenDealt && card && card.value !== 'hidden') {
       const delay = cardIndex * 200; // Stagger delay in milliseconds - increased for smoother animation
       
       // Define the animation keyframes - cards come from top-right (dealer position)
@@ -26,8 +26,8 @@ const PlayingCard = React.forwardRef(({ card, hidden = false, cardIndex = 0, isD
         },
         {
           transform: isDealerCard && cardIndex === 1 && !showDealerHoleCard 
-            ? 'translateX(0px) translateY(0px) scale(1) rotateY(180deg)' // Keep face down
-            : 'translateX(0px) translateY(0px) scale(1) rotateY(0deg)', // Face up
+            ? 'translateX(0px) translateY(0px) scale(1) rotateY(180deg)' // Keep face down for dealer hole card
+            : 'translateX(0px) translateY(0px) scale(1) rotateY(0deg)', // Face up for all other cards
           opacity: 1
         }
       ];
@@ -44,7 +44,7 @@ const PlayingCard = React.forwardRef(({ card, hidden = false, cardIndex = 0, isD
       cardRef.current.animate(dealKeyframes, animationOptions);
       setHasBeenDealt(true);
     }
-  }, [cardIndex, isDealerCard]); // Removed showDealerHoleCard from dependencies
+  }, [cardIndex, isDealerCard, card?.value]); // Added card?.value to dependencies to handle card changes
 
   // No automatic flip animation - the card display is controlled by the hidden prop and card prop
 
@@ -147,8 +147,8 @@ const PlayingCard = React.forwardRef(({ card, hidden = false, cardIndex = 0, isD
     
         {/* Card face/back */}
         <motion.img
-          src={hidden ? cardBackUrl : cardImageUrl}
-          alt={hidden ? 'Hidden card' : `${card.value} of ${card.suit}`}
+          src={hidden || (isDealerCard && cardIndex === 1 && !showDealerHoleCard) ? cardBackUrl : cardImageUrl}
+          alt={hidden || (isDealerCard && cardIndex === 1 && !showDealerHoleCard) ? 'Hidden card' : `${card.value} of ${card.suit}`}
           className="w-[105px] h-[147px] rounded-lg shadow-lg select-none"
           draggable={false}
           initial={{ opacity: 1 }}
