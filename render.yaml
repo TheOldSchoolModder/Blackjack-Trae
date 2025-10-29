@@ -17,7 +17,7 @@ services:
         sync: false
     
   # Frontend React app
-  - type: static
+  - type: web
     name: blackjack-frontend
     env: static
     plan: free
