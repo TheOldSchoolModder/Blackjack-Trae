@@ -5,6 +5,8 @@ import GameRoom from '@/components/GameRoom';
 import { AppContext } from '@/context/AppContext';
 import { Loader2 } from 'lucide-react';
 
+// Frontend redeploy trigger - 2024-10-29 11:58 UTC
+
 const App = () => {
   const {
     currentView,
