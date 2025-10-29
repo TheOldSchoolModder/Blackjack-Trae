@@ -4,10 +4,10 @@ const isProduction = import.meta.env.PROD;
 
 // Get API URL from environment or use defaults
 const baseApiUrl = import.meta.env.VITE_API_URL || 
-  (isDevelopment ? 'http://localhost:5000' : 'https://blackjackapp.online/blackjack-server-3q07');
+  (isDevelopment ? 'http://localhost:5000' : 'https://blackjack-server-3q07.onrender.com');
 
 const baseSocketUrl = import.meta.env.VITE_SOCKET_URL || 
-  (isDevelopment ? 'http://localhost:5000' : 'https://blackjackapp.online/blackjack-server-3q07');
+  (isDevelopment ? 'http://localhost:5000' : 'https://blackjack-server-3q07.onrender.com');
 
 // Ensure URLs don't end with slash to prevent double slashes
 export const API_BASE_URL = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
