@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card.jsx';
 import { Badge } from '@/components/ui/badge.jsx';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
