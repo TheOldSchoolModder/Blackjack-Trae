@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { X, Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import { useTranslation } from '@/hooks/useTranslation';
+import { API_ENDPOINTS } from '@/config/api';
 
 const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { signUp, signIn } = useAuth();
@@ -130,6 +131,23 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
               />
             </div>
             
+            {mode === 'register' && (
+              <div>
+                <Label htmlFor="username" className="text-sm font-medium">
+                  Username
+                </Label>
+                <Input
+                  id="username"
+                  type="text"
+                  value={formData.username}
+                  onChange={(e) => handleInputChange('username', e.target.value)}
+                  className="mt-1 bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 text-sm sm:text-base"
+                  placeholder="Enter your username"
+                  disabled={loading}
+                />
+              </div>
+            )}
+            
             <div>
               <Label htmlFor="password" className="text-sm font-medium">
                 Password
@@ -144,6 +162,23 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                 disabled={loading}
               />
             </div>
+            
+            {mode === 'register' && (
+              <div>
+                <Label htmlFor="confirmPassword" className="text-sm font-medium">
+                  Confirm Password
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                  className="mt-1 bg-slate-800/50 border-slate-600 text-white placeholder-slate-400 text-sm sm:text-base"
+                  placeholder="Confirm your password"
+                  disabled={loading}
+                />
+              </div>
+            )}
           </div>
 
           <Button
@@ -156,7 +191,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
 
           <div className="text-center">
             <button
-              onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
+              onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
               className="text-yellow-400 hover:text-yellow-300 text-xs sm:text-sm underline"
               disabled={loading}
             >

@@ -3,11 +3,15 @@ const isDevelopment = import.meta.env.DEV;
 const isProduction = import.meta.env.PROD;
 
 // Get API URL from environment or use defaults
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 
+const baseApiUrl = import.meta.env.VITE_API_URL || 
   (isDevelopment ? 'http://localhost:5000' : window.location.origin);
 
-export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 
+const baseSocketUrl = import.meta.env.VITE_SOCKET_URL || 
   (isDevelopment ? 'http://localhost:5000' : window.location.origin);
+
+// Ensure URLs don't end with slash to prevent double slashes
+export const API_BASE_URL = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+export const SOCKET_URL = baseSocketUrl.endsWith('/') ? baseSocketUrl.slice(0, -1) : baseSocketUrl;
 
 // API endpoints
 export const API_ENDPOINTS = {
